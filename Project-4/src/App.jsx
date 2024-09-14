@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useReducer } from 'react'
 
 const App = () => {
-  const[clickPro,SetClickpro] = useState(false);
-  const[clickAp,SetClickap] = useState(false);
-  const[clickSa,SetClickSa] = useState(false);
-  const clickProfile = () =>{
-    SetClickap(false);
-    SetClickSa(false);
-    SetClickpro(true);
+  const Initials = {
+    profile:true,
+    application:null,
+    saved:null
   }
-  const clickApp = () =>{
-    SetClickap(true);
-    SetClickSa(false);
-    SetClickpro(false);
+  const Manage =(value,name)=>{
+      if(name.value=="profile")
+        return {profile:true,application:null,saved:null}
+      if(name.value=="application")
+        return {profile:null,application:true,savmed:null}
+      if(name.value=="saved")
+        return {profile:null,application:null,saved:true}
+    }
+  
+ 
+  const[clicked,SetCliked] = useReducer(Manage,Initials);
+  const Change = (e) =>{
+    var name = e.target.attributes.name;
+    SetCliked(name);
   }
-  const clickSave = () =>{
-    SetClickap(false);
-    SetClickSa(true);
-    SetClickpro(false);
-  }
-  useEffect(()=>{
-    clickApp();
-  },[])
   return (
     <>
     <div className="container_one">
@@ -49,9 +48,9 @@ const App = () => {
     </div>
     <div className="conatiner_three">
       <div className="menus">
-        <div className={`menu ${clickPro && "clicked"}`} onClick={()=>clickProfile()}>Profile</div>
-        <div className={`menu ${clickAp && "clicked"}`} onClick={()=>clickApp()}>Applications</div>
-        <div className={`menu ${clickSa && "clicked"}`} onClick={()=>clickSave()}>Save Jobs</div>
+        <div name="profile" className={`menu ${clicked.profile && "clicked"}`} onClick={(e)=>Change(e)}>Profile</div>
+        <div name="application" className={`menu ${clicked.application && "clicked"}`} onClick={(e)=>Change(e)}>Applications</div>
+        <div name="saved" className={`menu ${clicked.saved && "clicked"}`} onClick={(e)=>Change(e)}>Save Jobs</div>
       </div>
       <div className="main_content">
         <div className="detials">
