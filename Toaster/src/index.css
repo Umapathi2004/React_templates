@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{  
+  overflow: hidden;
+  font-family: "Jost", sans-serif;
+}
+.container{
+  width: 100vw;
+  height: 100vh; 
+  display: grid;
+  place-items: center;
+}
+.toaster_container{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.toaster_container .toaster{
+  padding: 10px;
+  font-size: 1em;
+  letter-spacing: 1px;
+  color: #ffff;
+  display: flex;
+  gap:20px;
+  justify-content: space-between;
+  border-radius: 3px;
+  animation: ToasterAnima 1s ease;
+}
+.buttons_container{
+  display: flex;
+  gap: 20px;
+}
+.buttons_container button{
+  font-size: 1em;
+  letter-spacing: 1px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: #ffff;
+  font-weight: 500;
+  border-radius: 3px;
+}
+.success{
+  background-color: green;
+}
+.warning{
+  background-color: #d5d500cb;
+}
+.alert{
+  background-color: red;
+}
+.info{
+  background-color: gray;
+}
+@keyframes ToasterAnima {
+  0%{
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
